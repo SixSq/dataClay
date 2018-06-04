@@ -2,14 +2,8 @@
 TOOLSPATH=../tool/dClayTool.sh
 DCLIB=../tool/lib/dataclayclient.jar
 
-until $TOOLSPATH GetDataClayID 
-do 
-    echo " --- waiting for dataclay"
-    sleep 2
-done
-
 # Minimum set of required variables
-APP=cimi
+APP=CIMIjson
 STUBSPATH="stubs"
 MODELPATH="bin/CIMI"
 
@@ -28,20 +22,8 @@ else
 	NAMESPACE="${APP}NS"
 fi
 USER=${APP}User
-PASS=cHaNgEmE
+PASS=${APP}Pass
 DATASET=${APP}DS
-
-mv cfgfiles/session.properties cfgfiles/session.properties.orig
-
-cat >cfgfiles/session.properties <<EOF
-### StorageItf.init variables
-Account=$USER
-Password=$PASS
-StubsClasspath=./stubs
-DataSets=$DATASET
-DataSetForStore=$DATASET
-DataClayClientConfig=./cfgfiles/client.properties
-EOF
 
 printMsg() {
 	printf "\n******\n***** $1 \n******\n "
